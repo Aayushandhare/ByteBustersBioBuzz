@@ -32,10 +32,13 @@ public class Constants {
     public static PinpointConfig localizerConfig = new PinpointConfig(
             c -> {
                 c.name.set("pinpoint");
-                c.xPodOffset.set(2.187);  // Change these vales based on robot X offset from center.
-                c.yPodOffset.set(-4.572);  // Change these vales based on robot Y offset from center.
+              //  c.xPodOffset.set(2.187);  // Change these vales based on robot X offset from center.
+                //c.yPodOffset.set(-2.572);  // Change these vales based on robot Y offset from center.
+                c.xPodOffset.set(0.6854949410506121);  // Change these vales based on robot X offset from center.
+                c.yPodOffset.set(1.202851543276329);
+
                 c.xPodDirection.set(GoBildaPinpointDriver.EncoderDirection.FORWARD);
-                c.yPodDirection.set(GoBildaPinpointDriver.EncoderDirection.FORWARD);
+                c.yPodDirection.set(GoBildaPinpointDriver.EncoderDirection.REVERSED);// changed value to REVERSED based on pinpoint tunner
             }
     );
     public static ForesightConfig foresightConfig = new ForesightConfig(

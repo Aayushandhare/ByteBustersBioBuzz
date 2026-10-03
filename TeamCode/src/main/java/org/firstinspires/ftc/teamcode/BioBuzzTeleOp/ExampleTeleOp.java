@@ -29,8 +29,8 @@ public class ExampleTeleOp extends OpMode {
 
         DrivePowers powers = ManualDrive.fieldCentric(
                 -gamepad1.left_stick_y,
-                gamepad1.left_stick_x,
-                gamepad1.right_stick_x,
+                -gamepad1.left_stick_x, // changed to negative to correct direction for diagonal movement
+                -gamepad1.right_stick_x,
                 follower.pose().heading()
         );
         follower.manual(powers);
@@ -40,8 +40,8 @@ public class ExampleTeleOp extends OpMode {
         ManualDrive.driveOrHold(
                 follower,
                 -gamepad1.left_stick_y,
-                gamepad1.left_stick_x,
-                gamepad1.right_stick_x
+                -gamepad1.left_stick_x,// changed to negative to correct direction for diagonal movement
+                -gamepad1.right_stick_x
         );
 
         follower.update();

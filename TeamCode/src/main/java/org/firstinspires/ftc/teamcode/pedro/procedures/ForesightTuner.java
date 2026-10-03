@@ -19,7 +19,7 @@ import java.util.function.Function;
 import static com.pedropathing.utils.Utils.linearFit;
 import static com.pedropathing.utils.Utils.quadraticFit;
 
-public class ForesightTuner extends Procedure {
+public class    ForesightTuner extends Procedure {
     Function<HardwareMap, Localizer> localizerFunction;
     Function<HardwareMap, Drivetrain> drivetrainFunction;
 
