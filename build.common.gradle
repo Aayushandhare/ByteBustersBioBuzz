@@ -16,10 +16,11 @@
  */
 
 import java.util.regex.Pattern
+apply plugin: 'com.android.application'
 
 android {
 
-    compileSdk 34
+    compileSdk 37
 
     signingConfigs {
         release {
