@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Mechanisms;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
+//push to repo
 public class Intake {
     private DcMotor FrontIntake,BackIntake;
     private CRServo PollenServo, NectarServo;
@@ -14,7 +14,6 @@ public class Intake {
             FrontIntake = hwMap.get(DcMotor.class, "motor_intake_front");
             BackIntake = hwMap.get(DcMotor.class, "motor_intake_back");
         }
-
 
         public void setPollenServoSpeed(double speed)
         {
