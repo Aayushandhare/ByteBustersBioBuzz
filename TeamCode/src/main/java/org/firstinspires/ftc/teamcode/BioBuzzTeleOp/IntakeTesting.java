@@ -8,22 +8,26 @@ import org.firstinspires.ftc.teamcode.Mechanisms.Intake;
 
 @TeleOp
 public class IntakeTesting extends OpMode  {
-    Intake intake=new Intake();
+    Intake intake = new Intake();
+    int a=1;
 //adding comment to test pushing to the repo
     @Override
     public void init() {
         intake.init(hardwareMap);
 
     }
+
     @Override
     public void loop(){
-        int a=1;
-        intake.setNectarServoSpeed(-1*a);
-        intake.setPollenServoSpeed(1 * a);
+
+        intake.setNectarServoSpeed(a);
+        intake.setPollenServoSpeed(a);
         intake.setbackIntakeMotorSpeed(-1 * a);
         intake.setFrontIntakeMotorSpeed(-1*a);
-        if(gamepad1.a){
-            a *= -1;
-        }
+        intake.setNectarShooterSpeed(1);
+        intake.setPollenShooterSpeed(1);
+       if(gamepad1.aWasPressed()){
+          a *= -1;
+         }
     }
 }
