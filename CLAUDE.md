@@ -2,6 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## How to work with this team
+
+- ByteBusters are students, and some are new to Java, Android Studio and FTC. Explain changes in plain language and say *why*, not just *what*. Judges ask students about their code, so the team has to understand it.
+- Make small, testable changes, one mechanism or one OpMode at a time. After each change, say how to test it on the robot.
+- Run `.\gradlew.bat :TeamCode:assembleDebug` after editing to confirm the code compiles. Never deploy (`installDebug`) unless asked.
+- Don't rename hardware config names or delete existing OpModes without asking. Add a new OpMode instead of rewriting a working one.
+- Comment new code so a first-year student can follow it.
+- Ask before changing `pedro/Constants.java` tuned values or motor directions.
+
 ## What this is
 
 FTC (FIRST Tech Challenge) robot controller app for team ByteBusters, built on the official FTC SDK 12.0 for the 2026–2027 **BIOBUZZ** season. It is an Android app that runs on the Control Hub; there is no desktop runtime and no unit tests. Code is verified by building and deploying to the robot.

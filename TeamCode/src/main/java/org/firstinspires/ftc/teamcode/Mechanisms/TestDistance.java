@@ -9,11 +9,12 @@ public class TestDistance {
 
     private DistanceSensor distance;
 
-    public void init(HardwareMap hwMap){
+    public void init(HardwareMap hwMap)
+    {
         distance = hwMap.get(DistanceSensor.class, "sensor_distance");
-
     }
-    public double getDistance(){
+    public double getDistance()
+    {
         return distance.getDistance(DistanceUnit.CM);
     }
 }

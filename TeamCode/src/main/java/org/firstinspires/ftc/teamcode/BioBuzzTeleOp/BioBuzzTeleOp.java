@@ -29,7 +29,7 @@ public class BioBuzzTeleOp extends OpMode
         int a = 1;
 
         //set intake servo and motor speed
-        intake.setNectarServoSpeed(-1 * a);
+        intake.setNectarServoSpeed( a);
         intake.setPollenServoSpeed(a);
         intake.setbackIntakeMotorSpeed(-1 * a);
         intake.setFrontIntakeMotorSpeed(-1 * a);
@@ -37,15 +37,15 @@ public class BioBuzzTeleOp extends OpMode
         // reverse if a button pressed
         if (gamepad1.a)
         {
-           a *= -1;
+            a *= -1;
 
         }
 
         telemetry.addData("Gamepad1.leftStick Y:", gamepad1.left_stick_y);
         //set Drive controls
         forward = gamepad1.left_stick_y;
-        strafe = gamepad1.left_stick_x;
-        rotate = gamepad1.right_stick_x;
+        strafe = - gamepad1.left_stick_x;
+        rotate = -gamepad1.right_stick_x;
 
         telemetry.addData("Gamepad1.leftStick X:", gamepad1.left_stick_x);
 

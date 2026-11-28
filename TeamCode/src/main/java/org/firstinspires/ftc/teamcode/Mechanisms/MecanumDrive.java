@@ -1,3 +1,4 @@
+
 package org.firstinspires.ftc.teamcode.Mechanisms;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -13,19 +14,19 @@ public class MecanumDrive {
     private DcMotor frontRightMotor, frontLeftMotor, backLeftMotor, backRightMotor;
     private  IMU imu;
 
-public void init(HardwareMap hardwareMap)
-{
-    //************ DC Motors *****************
-     frontLeftMotor = hardwareMap.get(DcMotor.class, "motor_fl");
-     backLeftMotor = hardwareMap.get(DcMotor.class, "motor_bl");
-     frontRightMotor = hardwareMap.get(DcMotor.class, "motor_fr");
-     backRightMotor = hardwareMap.get(DcMotor.class, "motor_br");
+    public void init(HardwareMap hardwareMap)
+    {
+        //************ DC Motors *****************
+        frontLeftMotor = hardwareMap.get(DcMotor.class, "motor_fl");
+        backLeftMotor = hardwareMap.get(DcMotor.class, "motor_bl");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "motor_fr");
+        backRightMotor = hardwareMap.get(DcMotor.class, "motor_br");
 
 
-    frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-    backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-    frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-    backRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        backRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
 
 //    frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -33,24 +34,24 @@ public void init(HardwareMap hardwareMap)
 //    frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //    backRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-    imu = hardwareMap.get(IMU.class, "imu");
+        imu = hardwareMap.get(IMU.class, "imu");
 
-    RevHubOrientationOnRobot RevOrientation = new RevHubOrientationOnRobot(
-            RevHubOrientationOnRobot.LogoFacingDirection.UP,
-            RevHubOrientationOnRobot.UsbFacingDirection.FORWARD);
+        RevHubOrientationOnRobot RevOrientation = new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD);
 
-    imu.initialize(new IMU.Parameters(RevOrientation));
+        imu.initialize(new IMU.Parameters(RevOrientation));
 
 
-    //frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-    // "Motor FR" needs to match exactly as in configuration
 
-    //frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-    //frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-    //backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-    //backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-    //backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
- }
+        // "Motor FR" needs to match exactly as in configuration
+
+
+        frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    }
     public void drive(double forward, double strafe, double rotate)
     {
         double frontLeftPower = forward + strafe + rotate;
@@ -66,14 +67,14 @@ public void init(HardwareMap hardwareMap)
         maxPower = Math.max(maxPower, Math.abs(frontRightPower));
         maxPower = Math.max(maxPower, Math.abs(backRightPower));
 
-       // frontLeftMotor.setPower(0.5);
+        // frontLeftMotor.setPower(0.5);
 
         frontLeftMotor.setPower(maxSpeed *(frontLeftPower/maxPower));
         backLeftMotor.setPower(maxSpeed *(backLeftPower/maxPower));
         frontRightMotor.setPower(maxSpeed *(frontRightPower/maxPower));
         backRightMotor.setPower(maxSpeed * (backRightPower/maxPower));
 
-  }
+    }
     public void driveFieldRelative(double forward, double strafe, double rotate)
     {
 
@@ -91,12 +92,24 @@ public void init(HardwareMap hardwareMap)
 
     }
 
+    // ---------------- IMU helpers ----------------
+    // Sets the robot's current heading as "0 degrees" (straight ahead for field-relative driving).
+    public void resetYaw()
+    {
+        imu.resetYaw();
+    }
+    // The robot's heading in degrees, for telemetry.
+    public double getHeadingDegrees()
+    {
+        return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
+    }
+
     /****************e.g setter methods remove later if not used anywhere******************/
     public void setFrontRightMotorSpeed(double speed)
     {
         //accepts values from -1.0 to 1.0
         frontRightMotor.setPower(speed);
-            }
+    }
     public void setFrontLeftMotorSpeed(double speed)
     {
         //accepts values from -1.0 to 1.0
